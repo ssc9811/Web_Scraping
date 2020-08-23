@@ -3,13 +3,13 @@ import requests
 
 URL = f"https://comic.naver.com/webtoon/list.nhn?titleId=736277&weekday=sun"
 
-# def rate():
-#     result = requests.get(URL)
-#     soup = BeautifulSoup(result.text, "html.parser")
-#     webtoon = soup.find_all("div",{"class":"rating_type"})
-#     for webtoons in webtoon:
-#         rate = webtoons.get_text(strip=True)
-#         print(rate)
+def rate():
+    result = requests.get(URL)
+    soup = BeautifulSoup(result.text, "html.parser")
+    webtoon = soup.find_all("div",{"class":"rating_type"})
+    for webtoons in webtoon:
+        rate = webtoons.find("strong").get_text()
+        return rate
         
 def last_page(max_page):
     for i in range(int(max_page)):
@@ -31,4 +31,4 @@ def search_page():
         max_page = page.get_text()
     last_page(max_page)
     
-search_page();
+search_page()
