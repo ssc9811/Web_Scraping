@@ -1,0 +1,15 @@
+1.
+filename = "시가 총액.csv"
+f = open(filename , "w", encoding="utf-8-sig", newline="")
+writer = csv.writer(f)  
+
+2.
+with open(f"movie{idx+1}.jpg", "wb") as f:
+    f.write(image_res.content)
+
+3.
+split()
+
+4.
+data = [colum.get_text().strip() for colum in colums] - 한줄 for문.
+----------------------------------------------------------------------20.8.24(월)

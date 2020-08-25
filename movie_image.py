@@ -17,8 +17,7 @@ for idx, image in enumerate(images): #enumerate 배열에서 값과 idx값을 �
     image_res = requests.get(image_url)
 
     with open(f"movie{idx+1}.jpg", "wb") as f:
-        # f.write(image_res.content)
-        print(image_res.content)
-
+        f.write(image_res.content)
+        
     if idx >= 4:
         break
