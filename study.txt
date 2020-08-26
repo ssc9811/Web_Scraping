@@ -1,6 +1,10 @@
 1.
 filename = "시가 총액.csv"
 f = open(filename , "w", encoding="utf-8-sig", newline="")
+
+encoding="utf-8-sig" : 한글 잘 표현
+newline="" : 불필요한 줄이 추가되는것을 방지
+
 writer = csv.writer(f)  
 
 2.
@@ -9,7 +13,53 @@ with open(f"movie{idx+1}.jpg", "wb") as f:
 
 3.
 split()
+itle = "N	종목명	현재가	전일비	등락률	액면가	시가총액	상장주식수	외국인비율	거래량	PER	ROE".split("\t") 
+변환 -> ['N', '종목명', '현재가', '전일비', '등락률', '액면가', '시가총액', '상장주식수', '외국인비율', '거래량', 'PER', 'ROE']
 
 4.
 data = [colum.get_text().strip() for colum in colums] - 한줄 for문.
 ----------------------------------------------------------------------20.8.24(월)
+
+1. class 여러개 가져오는 방법
+movie = soup.find_all("div",{"class":["ImZGtf mpg5gc","Vpfmgd"]})
+
+2. 스크롤 내리기
+
+interval = 2
+
+# 현재 문서 높이를 가져와서 저장
+prev_height = browser.execute_script("return document.body.scrollHeight")
+
+# 반복 수행
+while True:
+    # 스크롤을 가장 아래로 내림
+    browser.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+
+    # 페이지 로딩 대기
+    time.sleep(interval)
+
+    # 현재 문서 높이를 가져와서 저장
+    curr_height = browser.execute_script("return document.body.scrollHeight")
+    if curr_height == prev_height:
+        break
+
+    prev_height = curr_height
+
+3.headless Chrom - 웹 브라우저를 띄우지 않고 실행 , 때로는 user-agent 정의 필요.
+options = webdriver.ChromeOptions()
+options.headless = True
+options.add_argument("window-size=1920x1080")
+
+browser = webdriver.Chrome(options=options)
+
+4. 주의!
+    1. 무분별한 웹 크롤링 / 웹 스크래핑은 대상 서버에 부화
+    -> 계정 / IP차단
+
+    2. 데이터 사용 주의
+    -> 이미지, 텍스트 등 데이터 무단 활용 시 저작권 등 침해 요소, 법적 제재
+
+    3. robot.txt
+    -> 법적 효력 X , 대상 사이트의 권고
+
+----------------------------------------------------------------------20.8.26(수)
