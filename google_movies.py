@@ -1,4 +1,7 @@
 from selenium import webdriver
+import time
+import requests
+from bs4 import BeautifulSoup
 
 browser = webdriver.Chrome()
 browser.maximize_window()
@@ -6,7 +9,6 @@ browser.maximize_window()
 URL = "https://play.google.com/store/movies/top"
 browser.get(URL)
 
-import time
 interval = 2 # 2초에 한번씩 스크롤 내림
 
 # 현재 문서 높이를 가져와서 저장
@@ -28,9 +30,6 @@ while True:
     prev_height = curr_height
 
 print("스크롤 완료")
-
-import requests
-from bs4 import BeautifulSoup
 
 soup = BeautifulSoup(browser.page_source, "lxml")
 # movie = soup.find_all("div",{"class":["ImZGtf mpg5gc","Vpfmgd"]}) # 여러개 가져오는 방법
